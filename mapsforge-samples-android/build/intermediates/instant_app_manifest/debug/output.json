@@ -1,0 +1,1 @@
+[{"outputType":{"type":"INSTANT_APP_MANIFEST"},"apkData":{"type":"MAIN","splits":[],"versionCode":1,"versionName":"master-SNAPSHOT","enabled":true,"outputFile":"mapsforge-samples-android-debug.apk","fullName":"debug","baseName":"debug"},"path":"AndroidManifest.xml","properties":{"packageId":"org.mapsforge.samples.android","split":"","minSdkVersion":"16"}}]

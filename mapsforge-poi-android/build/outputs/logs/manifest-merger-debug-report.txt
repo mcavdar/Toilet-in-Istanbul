@@ -1,0 +1,37 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /home/cm/Toilet-in-Istanbul/mapsforge-poi-android/AndroidManifest.xml:2:1-49
+INJECTED from /home/cm/Toilet-in-Istanbul/mapsforge-poi-android/AndroidManifest.xml:2:1-49
+INJECTED from /home/cm/Toilet-in-Istanbul/mapsforge-poi-android/AndroidManifest.xml:2:1-49
+INJECTED from /home/cm/Toilet-in-Istanbul/mapsforge-poi-android/AndroidManifest.xml:2:1-49
+INJECTED from /home/cm/Toilet-in-Istanbul/mapsforge-poi-android/AndroidManifest.xml:2:1-49
+INJECTED from /home/cm/Toilet-in-Istanbul/mapsforge-poi-android/AndroidManifest.xml:2:1-49
+INJECTED from /home/cm/Toilet-in-Istanbul/mapsforge-poi-android/AndroidManifest.xml:2:1-49
+	package
+		ADDED from /home/cm/Toilet-in-Istanbul/mapsforge-poi-android/AndroidManifest.xml:2:11-46
+		INJECTED from /home/cm/Toilet-in-Istanbul/mapsforge-poi-android/AndroidManifest.xml
+		INJECTED from /home/cm/Toilet-in-Istanbul/mapsforge-poi-android/AndroidManifest.xml
+	android:versionName
+		INJECTED from /home/cm/Toilet-in-Istanbul/mapsforge-poi-android/AndroidManifest.xml
+		ADDED from /home/cm/Toilet-in-Istanbul/mapsforge-poi-android/AndroidManifest.xml:2:1-49
+		INJECTED from /home/cm/Toilet-in-Istanbul/mapsforge-poi-android/AndroidManifest.xml
+	xmlns:android
+		ADDED from /home/cm/Toilet-in-Istanbul/mapsforge-poi-android/AndroidManifest.xml:2:1-49
+	android:versionCode
+		INJECTED from /home/cm/Toilet-in-Istanbul/mapsforge-poi-android/AndroidManifest.xml
+		ADDED from /home/cm/Toilet-in-Istanbul/mapsforge-poi-android/AndroidManifest.xml:2:1-49
+		INJECTED from /home/cm/Toilet-in-Istanbul/mapsforge-poi-android/AndroidManifest.xml
+uses-sdk
+INJECTED from /home/cm/Toilet-in-Istanbul/mapsforge-poi-android/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /home/cm/Toilet-in-Istanbul/mapsforge-poi-android/AndroidManifest.xml
+INJECTED from /home/cm/Toilet-in-Istanbul/mapsforge-poi-android/AndroidManifest.xml
+INJECTED from /home/cm/Toilet-in-Istanbul/mapsforge-poi-android/AndroidManifest.xml
+INJECTED from /home/cm/Toilet-in-Istanbul/mapsforge-poi-android/AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from /home/cm/Toilet-in-Istanbul/mapsforge-poi-android/AndroidManifest.xml
+		ADDED from /home/cm/Toilet-in-Istanbul/mapsforge-poi-android/AndroidManifest.xml
+		INJECTED from /home/cm/Toilet-in-Istanbul/mapsforge-poi-android/AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from /home/cm/Toilet-in-Istanbul/mapsforge-poi-android/AndroidManifest.xml
+		ADDED from /home/cm/Toilet-in-Istanbul/mapsforge-poi-android/AndroidManifest.xml
+		INJECTED from /home/cm/Toilet-in-Istanbul/mapsforge-poi-android/AndroidManifest.xml
