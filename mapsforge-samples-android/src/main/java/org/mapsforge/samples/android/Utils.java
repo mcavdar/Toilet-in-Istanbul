@@ -82,7 +82,7 @@ public final class Utils {
         return paint;
     }
 
-    static Marker createTappableMarker(final Context c, int resourceIdentifier,
+    static Marker createTappableMarker(final Context c, final int resourceIdentifier,
                                        LatLong latLong) {
         Bitmap bitmap = new AndroidBitmap(BitmapFactory.decodeResource(c.getResources(), resourceIdentifier));
         bitmap.incrementRefCount();
@@ -91,8 +91,13 @@ public final class Utils {
             public boolean onTap(LatLong geoPoint, Point viewPosition,
                                  Point tapPoint) {
                 if (contains(viewPosition, tapPoint)) {
+
+                    //Marker marker3 = Utils.createTappableMarker(c,
+                    //      R.drawable.marker_red, geoPoint);
+                    //Bitmap bitmap = new AndroidBitmap(BitmapFactory.decodeResource(c.getResources(), resourceIdentifier));
+
                     Toast.makeText(c,
-                            "The Marker was tapped " + geoPoint.toString(),
+                            "getresource " + c.getResources().toString() +"resource int " + resourceIdentifier +"The Marker was tapped " + geoPoint.toString() ,
                             Toast.LENGTH_SHORT).show();
                     return true;
                 }

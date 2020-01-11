@@ -21,9 +21,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import androidx.fragment.app.Fragment;
+
+import org.mapsforge.core.model.LatLong;
 import org.mapsforge.map.android.util.AndroidUtil;
 import org.mapsforge.map.android.view.MapView;
 import org.mapsforge.map.layer.cache.TileCache;
+import org.mapsforge.map.layer.overlay.Marker;
 import org.mapsforge.map.reader.MapFile;
 import org.mapsforge.map.rendertheme.InternalRenderTheme;
 import org.mapsforge.samples.android.dummy.DummyContent;
@@ -99,6 +102,7 @@ public class ItemDetailFragment extends Fragment {
     private final byte PERMISSIONS_REQUEST_READ_STORAGE = 122;
 
     protected void createLayers() {
+
         TileCache tileCache = AndroidUtil.createTileCache(this.getActivity(), "fragments",
                 this.mapView.getModel().displayModel.getTileSize(), 1.0f, 1.5);
         this.mapView.getLayerManager().getLayers().add(AndroidUtil.createTileRendererLayer(
@@ -106,6 +110,15 @@ public class ItemDetailFragment extends Fragment {
                 InternalRenderTheme.DEFAULT));
 
         this.mapView.setCenter(this.dummyItem.location);
+
+
+
+        LatLong latLong3 = new LatLong(this.dummyItem.location.latitude,this.dummyItem.location.longitude);
+        Marker marker1 = Utils.createTappableMarker(this.getContext(),
+                R.drawable.marker_green, latLong3);
+        this.mapView.getLayerManager().getLayers().add(marker1);
+
+
         this.mapView.setZoomLevel((byte) 16);
     }
 
@@ -119,6 +132,6 @@ public class ItemDetailFragment extends Fragment {
     }
 
     protected String getMapFileName() {
-        return "berlin.map";
+        return "turkey.map";
     }
 }

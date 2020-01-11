@@ -61,14 +61,12 @@ public class DummyContent {
     public static final List<DummyItem> ITEMS = new ArrayList<DummyItem>();
 
     static {
-        addItem(new DummyItem("1", "Brandenburger Tor", new LatLong(52.516,
-                13.378), "This is the famous Brandenburger Tor"));
-        addItem(new DummyItem("2", "Checkpoint Charlie", new LatLong(52.507,
-                13.390), "This used to be the famous Checkpoint Charlie"));
+        addItem(new DummyItem("1", "Tuvalet 1", new LatLong(41.0243006, 29.016278), "This is the famous Brandenburger Tor"));
+        addItem(new DummyItem("2", "Tuvalet 2", new LatLong(41.0244006, 29.017278), "This used to be the famous Checkpoint Charlie"));
         addItem(new DummyItem(
                 "3",
-                "Savigny Platz",
-                new LatLong(52.505, 13.322),
+                "Tuvalet 3",
+                new LatLong(41.0246006, 29.016278),
                 "This is a square in Berlin with a longer text that does not really say anything at all and you would see more of the map if this useless text was not here."));
     }
 

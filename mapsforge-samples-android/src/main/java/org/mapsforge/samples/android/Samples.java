@@ -89,7 +89,11 @@ public class Samples extends Activity {
 
         setContentView(R.layout.activity_samples);
         LinearLayout linearLayout = findViewById(R.id.samples);
-        linearLayout.addView(createButton(GettingStarted.class));
+        linearLayout.addView(createButton(LocationOverlayMapViewer.class));
+        linearLayout.addView(createButton(ItemListActivity.class));
+
+        /*
+               linearLayout.addView(createButton(GettingStarted.class));
         linearLayout.addView(createLabel(null));
         linearLayout.addView(createButton(SimplestMapViewer.class));
         linearLayout.addView(createButton(DiagnosticsMapViewer.class));
@@ -101,7 +105,7 @@ public class Samples extends Activity {
                 startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/graphhopper/graphhopper/tree/0.8/android")));
             }
         }));
-        linearLayout.addView(createButton(LocationOverlayMapViewer.class));
+
         linearLayout.addView(createButton(PoiSearchViewer.class, null, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -169,6 +173,7 @@ public class Samples extends Activity {
         linearLayout.addView(createButton(LabelLayerUsingMapDataStoreMapViewer.class));
         linearLayout.addView(createButton(ClusterMapActivity.class));
         linearLayout.addView(createButton(GroupMarkerExample.class));
+         */
     }
 
     @Override
