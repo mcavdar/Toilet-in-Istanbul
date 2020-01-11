@@ -29,18 +29,20 @@ import org.mapsforge.core.graphics.Bitmap;
 import org.mapsforge.core.graphics.Paint;
 import org.mapsforge.core.graphics.Style;
 import org.mapsforge.core.model.LatLong;
+import org.mapsforge.core.model.Point;
 import org.mapsforge.map.android.graphics.AndroidBitmap;
 import org.mapsforge.map.android.graphics.AndroidGraphicFactory;
 import org.mapsforge.map.android.layers.MyLocationOverlay;
 import org.mapsforge.map.layer.overlay.Circle;
 import org.mapsforge.map.layer.overlay.Marker;
-
 /**
  * MapViewer that shows current position. In the data directory of the Samples
  * project is the file berlin.gpx that can be loaded in the Android Monitor to
  * simulate location data in the center of Berlin.
  */
 public class LocationOverlayMapViewer extends DownloadLayerViewer implements LocationListener {
+
+    Location old_location ;
 
     private static Paint getPaint(int color, int strokeWidth, Style style) {
         Paint paint = AndroidGraphicFactory.INSTANCE.createPaint();
@@ -52,6 +54,9 @@ public class LocationOverlayMapViewer extends DownloadLayerViewer implements Loc
 
     private LocationManager locationManager;
     private MyLocationOverlay myLocationOverlay;
+    protected LatLong latLong1 = new LatLong(41.0243006, 29.016278);
+    protected LatLong latLong2 = new LatLong(41.0244006, 29.017278);
+    protected LatLong latLong3 = new LatLong(41.0246006, 29.016278);
 
     @Override
     protected void createLayers() {
@@ -66,9 +71,19 @@ public class LocationOverlayMapViewer extends DownloadLayerViewer implements Loc
                 getPaint(AndroidGraphicFactory.INSTANCE.createColor(48, 0, 0, 255), 0, Style.FILL),
                 getPaint(AndroidGraphicFactory.INSTANCE.createColor(160, 0, 0, 255), 2, Style.STROKE));
 
+        Marker marker1 = Utils.createTappableMarker(this,
+                R.drawable.marker_green, latLong1);
+        Marker marker2 = Utils.createTappableMarker(this,
+                R.drawable.marker_green, latLong2);
+        Marker marker3 = Utils.createTappableMarker(this,
+                R.drawable.marker_green, latLong3);
         // create the overlay
         this.myLocationOverlay = new MyLocationOverlay(marker, circle);
         this.mapView.getLayerManager().getLayers().add(this.myLocationOverlay);
+        this.mapView.getLayerManager().getLayers().add(marker1);
+        this.mapView.getLayerManager().getLayers().add(marker2);
+        this.mapView.getLayerManager().getLayers().add(marker3);
+
     }
 
     @Override
@@ -104,9 +119,10 @@ public class LocationOverlayMapViewer extends DownloadLayerViewer implements Loc
     @Override
     public void onLocationChanged(Location location) {
         this.myLocationOverlay.setPosition(location.getLatitude(), location.getLongitude(), location.getAccuracy());
-
         // Follow location
         this.mapView.setCenter(new LatLong(location.getLatitude(), location.getLongitude()));
+        this.mapView.setZoomLevel((byte) 17);
+
     }
 
     @Override
@@ -134,7 +150,7 @@ public class LocationOverlayMapViewer extends DownloadLayerViewer implements Loc
         for (String provider : this.locationManager.getProviders(true)) {
             if (LocationManager.GPS_PROVIDER.equals(provider)
                     || LocationManager.NETWORK_PROVIDER.equals(provider)) {
-                this.locationManager.requestLocationUpdates(provider, 0, 0, this);
+                this.locationManager.requestLocationUpdates(provider, 0, 20, this);
             }
         }
     }

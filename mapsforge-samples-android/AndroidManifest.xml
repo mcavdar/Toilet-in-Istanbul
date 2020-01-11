@@ -16,7 +16,7 @@
         android:name=".SamplesApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="Mapsforge Samples"
+        android:label="Toilets in Istanbul"
         android:usesCleartextTraffic="true">
         <activity
             android:name=".Samples"
