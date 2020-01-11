@@ -25,6 +25,10 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
+
 import org.mapsforge.core.graphics.Bitmap;
 import org.mapsforge.core.graphics.Paint;
 import org.mapsforge.core.graphics.Style;
@@ -33,6 +37,7 @@ import org.mapsforge.core.model.Point;
 import org.mapsforge.map.android.graphics.AndroidBitmap;
 import org.mapsforge.map.android.graphics.AndroidGraphicFactory;
 import org.mapsforge.map.android.layers.MyLocationOverlay;
+import org.mapsforge.map.android.rotation.RotateView;
 import org.mapsforge.map.layer.overlay.Circle;
 import org.mapsforge.map.layer.overlay.Marker;
 /**
@@ -42,8 +47,9 @@ import org.mapsforge.map.layer.overlay.Marker;
  */
 public class LocationOverlayMapViewer extends DownloadLayerViewer implements LocationListener {
 
-    Location old_location ;
 
+    Location old_location ;
+    LocationOverlayMapViewer l = this;
     private static Paint getPaint(int color, int strokeWidth, Style style) {
         Paint paint = AndroidGraphicFactory.INSTANCE.createPaint();
         paint.setColor(color);
@@ -88,7 +94,17 @@ public class LocationOverlayMapViewer extends DownloadLayerViewer implements Loc
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
+
+        Button centerButton = (Button) findViewById(R.id.centerButton);
+        centerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                l.mapView.setCenter(new LatLong(old_location.getLatitude(), old_location.getLongitude()));
+                l.mapView.setZoomLevel((byte) 17);
+            }
+        });
 
         this.locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
     }
@@ -122,6 +138,7 @@ public class LocationOverlayMapViewer extends DownloadLayerViewer implements Loc
         // Follow location
         this.mapView.setCenter(new LatLong(location.getLatitude(), location.getLongitude()));
         this.mapView.setZoomLevel((byte) 17);
+        old_location = location;
 
     }
 

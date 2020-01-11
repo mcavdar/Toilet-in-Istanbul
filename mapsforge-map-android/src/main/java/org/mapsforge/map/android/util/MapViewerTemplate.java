@@ -136,6 +136,8 @@ public abstract class MapViewerTemplate extends Activity {
         mapView.getMapZoomControls().setAutoHide(isZoomControlsAutoHide());
         mapView.getMapZoomControls().setZoomLevelMin(getZoomLevelMin());
         mapView.getMapZoomControls().setZoomLevelMax(getZoomLevelMax());
+
+
     }
 
     /**

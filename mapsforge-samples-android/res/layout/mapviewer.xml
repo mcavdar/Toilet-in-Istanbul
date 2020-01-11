@@ -9,6 +9,8 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent" />
 
+
+
     <TextView
         android:id="@+id/attribution"
         android:layout_width="fill_parent"
@@ -20,5 +22,13 @@
         android:text="@string/copyright_osm"
         android:textColor="#000"
         android:textSize="@dimen/attribution_size" />
+
+
+    <Button
+        android:id="@+id/centerButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:text="@string/center_button" />
 
 </RelativeLayout>
