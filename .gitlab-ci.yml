@@ -1,6 +1,0 @@
-image: java:latest
-
-
-stages:
-  - validation
-
