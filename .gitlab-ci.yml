@@ -1,6 +1,17 @@
-image: java:latest
+image: maven:3.5-jdk-8
 
 
 stages:
-  - validation
+  - validate
 
+validate:
+  stage: validate
+  script:
+    - mvn validate
+
+
+checkstyle:
+  stage: validate
+  script:
+    - mvn checkstyle:check
+  allow_failure: true
