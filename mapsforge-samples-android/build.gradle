@@ -20,8 +20,8 @@ android {
     }
 
     defaultConfig {
-        versionCode project.versionCode()
-        versionName project.versionName()
+        versionCode 2
+        versionName "0.1"
         minSdkVersion androidMinSdk()
         targetSdkVersion androidTargetSdk()
         testApplicationId "org.mapsforge.samples.android.test"
