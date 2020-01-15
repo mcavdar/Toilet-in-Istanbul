@@ -1,5 +1,5 @@
 apply plugin: 'com.android.application'
-
+apply plugin: 'com.google.gms.google-services'
 dependencies {
     implementation project(":mapsforge-map-android")
     implementation project(":mapsforge-themes")
@@ -48,3 +48,4 @@ android {
         abortOnError false
     }
 }
+

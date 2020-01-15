@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "790948028604",
+    "firebase_url": "https://toilets-10645.firebaseio.com",
+    "project_id": "toilets-10645",
+    "storage_bucket": "toilets-10645.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:790948028604:android:e96745cd05bc893b5070b9",
+        "android_client_info": {
+          "package_name": "org.mapsforge.samples.android"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "790948028604-38phnv3mbuhlrvjs657cdliq2rh29d29.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA9b96mZkJWZA61foQevaEHi9E0KmGl9Rk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "790948028604-38phnv3mbuhlrvjs657cdliq2rh29d29.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
