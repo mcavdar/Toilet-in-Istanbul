@@ -8,6 +8,9 @@ dependencies {
     implementation 'androidx.core:core:1.1.0'
     implementation 'androidx.fragment:fragment:1.1.0'
     androidTestImplementation 'com.jayway.android.robotium:robotium-solo:5.6.3'
+    implementation 'com.google.firebase:firebase-firestore:21.3.1'
+    implementation 'com.android.support:multidex:1.0.3'
+    implementation 'com.google.firebase:firebase-auth:18.0.0'
 }
 
 android {
@@ -26,6 +29,7 @@ android {
         targetSdkVersion androidTargetSdk()
         testApplicationId "org.mapsforge.samples.android.test"
         testInstrumentationRunner "android.test.InstrumentationTestRunner"
+        multiDexEnabled true
     }
 
     sourceSets {
@@ -48,4 +52,3 @@ android {
         abortOnError false
     }
 }
-

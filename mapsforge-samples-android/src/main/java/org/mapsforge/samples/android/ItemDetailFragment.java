@@ -22,6 +22,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import androidx.fragment.app.Fragment;
 
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+
 import org.mapsforge.core.model.LatLong;
 import org.mapsforge.map.android.util.AndroidUtil;
 import org.mapsforge.map.android.view.MapView;
@@ -30,6 +36,12 @@ import org.mapsforge.map.layer.overlay.Marker;
 import org.mapsforge.map.reader.MapFile;
 import org.mapsforge.map.rendertheme.InternalRenderTheme;
 import org.mapsforge.samples.android.dummy.DummyContent;
+import androidx.annotation.NonNull;
+import com.google.android.gms.tasks.Task;
+
+import android.util.Log;
+import android.widget.Toast;
+
 
 import java.io.File;
 

@@ -17,9 +17,18 @@ package org.mapsforge.samples.android;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
+
+import androidx.annotation.NonNull;
 import androidx.core.app.NavUtils;
 import androidx.fragment.app.FragmentActivity;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 /**
  * An activity representing a list of Items. This activity has different
@@ -51,6 +60,8 @@ public class ItemListActivity extends FragmentActivity implements
     @Override
     public void onItemSelected(String id) {
         if (this.mTwoPane) {
+            Log.d("mtwopanel true","");
+
             // In two-pane mode, show the detail view in this activity by
             // adding or replacing the detail fragment using a
             // fragment transaction.
@@ -61,6 +72,8 @@ public class ItemListActivity extends FragmentActivity implements
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.item_detail_container, fragment).commit();
         } else {
+            Log.d("mtwopanel false","");
+
             // In single-pane mode, simply start the detail activity
             // for the selected item ID.
             Intent detailIntent = new Intent(this, ItemDetailActivity.class);
@@ -73,6 +86,7 @@ public class ItemListActivity extends FragmentActivity implements
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
+                Log.d("case inside","sadas");
                 // This ID represents the Home or Up button. In the case of this
                 // activity, the Up button is shown. Use NavUtils to allow users
                 // to navigate up one level in the application structure. For
@@ -90,6 +104,8 @@ public class ItemListActivity extends FragmentActivity implements
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item_list);
+
+
 
         setTitle(getClass().getSimpleName());
 

@@ -14,6 +14,17 @@
  */
 package org.mapsforge.samples.android.dummy;
 
+import android.util.Log;
+
+import androidx.annotation.NonNull;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.FieldPath;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+
 import org.mapsforge.core.model.LatLong;
 
 import java.util.ArrayList;
@@ -48,6 +59,7 @@ public class DummyContent {
         public String toString() {
             return this.content;
         }
+
     }
 
     /**
@@ -61,13 +73,32 @@ public class DummyContent {
     public static final List<DummyItem> ITEMS = new ArrayList<DummyItem>();
 
     static {
-        addItem(new DummyItem("1", "Tuvalet 1", new LatLong(41.0243006, 29.016278), "This is the famous Brandenburger Tor"));
-        addItem(new DummyItem("2", "Tuvalet 2", new LatLong(41.0244006, 29.017278), "This used to be the famous Checkpoint Charlie"));
-        addItem(new DummyItem(
-                "3",
-                "Tuvalet 3",
-                new LatLong(41.0246006, 29.016278),
-                "This is a square in Berlin with a longer text that does not really say anything at all and you would see more of the map if this useless text was not here."));
+
+
+        final FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+        db.collection("toilet-geo")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        int a = 0;
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Log.d("ccc5555666666", document.getId() + " => " + document.getData());
+
+                                addItem(new DummyItem(Integer.toString(a),document.get("userid").toString()+Integer.toString(a), new LatLong(Double.parseDouble(document.get("geo.latitude").toString()), Double.parseDouble(document.get("geo.longitude").toString())), "This is the famous Brandenburger Tor"));
+                                Log.d("asssss", document.get("geo.latitude").toString() + document.get("geo.longitude").toString());
+                                a += 1;
+                                //  Toast.makeText(this.mapView, "document gets success", Toast.LENGTH_SHORT).show();
+
+                            }
+                        } else {
+                            Log.d("ccc4555566666", "Error getting documents: ", task.getException());
+                            //Toast.makeText(this.mapView, "document gets error", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
     }
 
     private static void addItem(DummyItem item) {
@@ -75,7 +106,13 @@ public class DummyContent {
         ITEM_MAP.put(item.id, item);
     }
 
+
+
     protected DummyContent() {
         // no-op
+
+
+
+
     }
 }

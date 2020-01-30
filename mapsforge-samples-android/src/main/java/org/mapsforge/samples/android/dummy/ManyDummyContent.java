@@ -59,7 +59,7 @@ public class ManyDummyContent extends DummyContent {
         createItems();
     }
 
-    private static void addItem(DummyItem item) {
+    public static void addItem(DummyItem item) {
         if (!MANYITEM_MAP.containsKey(item.id)) {
             MANYITEMS.add(item);
             MANYITEM_MAP.put(item.id, item);

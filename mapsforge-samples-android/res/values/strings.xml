@@ -12,6 +12,7 @@
     <string name="downloadnowbutton">OK</string>
     <string name="rotate_button">Rotate</string>
     <string name="center_button">Center</string>
+    <string name="add_button">Add</string>
 
     <string name="zoomin_button">+</string>
     <string name="zoomout_button">-</string>

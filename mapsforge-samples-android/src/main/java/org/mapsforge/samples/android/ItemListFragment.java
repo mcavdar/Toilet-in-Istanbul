@@ -18,12 +18,22 @@ import android.annotation.TargetApi;
 import android.app.Activity;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+
+import androidx.annotation.NonNull;
 import androidx.fragment.app.ListFragment;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+
 import org.mapsforge.samples.android.dummy.DummyContent;
 
 /**
@@ -105,8 +115,12 @@ public class ItemListFragment extends ListFragment {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
             layout = android.R.layout.simple_list_item_activated_1;
         }
+
+
+
         setListAdapter(new ArrayAdapter<DummyContent.DummyItem>(getActivity(),
                 layout, android.R.id.text1, DummyContent.ITEMS));
+
     }
 
     @Override
