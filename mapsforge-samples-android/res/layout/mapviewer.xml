@@ -23,13 +23,14 @@
         android:textColor="#000"
         android:textSize="@dimen/attribution_size" />
 
-
-    <Button
+    <ImageButton
         android:id="@+id/centerButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:scaleType="fitXY"
         android:layout_alignParentBottom="true"
-        android:text="@string/center_button" />
+        android:background="@null"
+        android:src="@drawable/current" />
 
     <Button
         android:id="@+id/addButton"

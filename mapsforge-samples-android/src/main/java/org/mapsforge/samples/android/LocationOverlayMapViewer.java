@@ -199,7 +199,7 @@ public class LocationOverlayMapViewer extends DownloadLayerViewer implements Loc
             Log.d("ssss", "Error getting documents: ");
 
             marker1 = Utils.createTappableMarker(this,
-                    R.drawable.marker_green, liste.get(counter));
+                    R.drawable.marker, liste.get(counter));
             this.mapView.getLayerManager().getLayers().add(marker1);
         }
 
@@ -217,7 +217,7 @@ public class LocationOverlayMapViewer extends DownloadLayerViewer implements Loc
         //mRotationDetector = new RotationGestureDetector(this);
 
 
-        Button centerButton = (Button) findViewById(R.id.centerButton);
+        ImageButton centerButton = (ImageButton) findViewById(R.id.centerButton);
         centerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
