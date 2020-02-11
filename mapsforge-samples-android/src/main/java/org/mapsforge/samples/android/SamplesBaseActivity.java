@@ -234,6 +234,9 @@ public abstract class SamplesBaseActivity extends MapViewerTemplate implements S
             case R.id.menu_svgclear:
                 AndroidGraphicFactory.clearResourceFileCache();
                 break;
+            case R.id.add_new:
+
+                break;
         }
         return false;
     }

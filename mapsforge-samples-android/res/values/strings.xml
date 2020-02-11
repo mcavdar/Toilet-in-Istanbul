@@ -6,6 +6,7 @@
     <string name="menu_preferences">Settings</string>
     <string name="menu_position_enter_coordinates">Map Position</string>
     <string name="menu_svgclear">Clear SVG icon cache</string>
+    <string name="add_new">Add new toilet</string>
 
     <string name="cancelbutton">Cancel</string>
     <string name="okbutton">OK</string>

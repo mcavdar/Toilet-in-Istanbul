@@ -18,6 +18,7 @@ package org.mapsforge.samples.android;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.BitmapFactory;
 import android.location.Location;
@@ -26,6 +27,8 @@ import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -61,8 +64,8 @@ import java.util.Map;
 import java.util.List;
 import java.util.ArrayList;
 
-
-
+import java.io.InputStream;
+import java.io.*;
 import org.mapsforge.core.graphics.Canvas;
 import org.mapsforge.core.graphics.Color;
 import org.mapsforge.core.graphics.Paint;
@@ -75,6 +78,10 @@ import org.mapsforge.map.android.graphics.AndroidGraphicFactory;
 import org.mapsforge.map.layer.overlay.FixedPixelCircle;
 import org.mapsforge.map.layer.renderer.TileRendererLayer;
 import org.mapsforge.samples.android.dummy.DummyContent;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 /**
  * MapViewer that shows current position. In the data directory of the Samples
@@ -125,8 +132,37 @@ public class LocationOverlayMapViewer extends DownloadLayerViewer implements Loc
 
     private int i;
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.options_menu, menu);
+        return true;
+    }
 
+    @SuppressWarnings("deprecation")
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        Intent intent;
+        switch (item.getItemId()) {
+            case R.id.menu_preferences:
+                intent = new Intent(this, Settings.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
+                if (renderThemeStyleMenu != null) {
+                    intent.putExtra(Settings.RENDERTHEME_MENU, renderThemeStyleMenu);
+                }
+                startActivity(intent);
+                return true;
+            case R.id.menu_position_enter_coordinates:
+                showDialog(DIALOG_ENTER_COORDINATES);
+                break;
+            case R.id.menu_svgclear:
+                AndroidGraphicFactory.clearResourceFileCache();
+                break;
+            case R.id.add_new:
 
+                break;
+        }
+        return false;
+    }
 
     @Override
     protected void createLayers() {
@@ -172,6 +208,32 @@ public class LocationOverlayMapViewer extends DownloadLayerViewer implements Loc
                 });
 
 
+        db.collection("toilet-user")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Log.d("locationoverlay", document.getId() + " => " + document.getData());
+
+                                //addItem(new DummyContent.DummyItem(Integer.toString(a),document.get("userid").toString()+Integer.toString(a), new LatLong(Double.parseDouble(document.get("geo.latitude").toString()), Double.parseDouble(document.get("geo.longitude").toString())), "This is the famous Brandenburger Tor"));
+                                LatLong aaa = new LatLong(Double.parseDouble(document.get("geo.latitude").toString()), Double.parseDouble(document.get("geo.longitude").toString()));
+                                liste.add(aaa);
+                                Log.d("locationoverlaysss", document.get("geo.latitude").toString() + document.get("geo.longitude").toString());
+                                //  Toast.makeText(this.mapView, "document gets success", Toast.LENGTH_SHORT).show();
+
+                                ccc();
+
+                            }
+                        } else {
+                            Log.d("ccc4555566666", "Error getting documents: ", task.getException());
+                            //Toast.makeText(this.mapView, "document gets error", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+
 
 
         //Marker marker1 = Utils.createTappableMarker(this,
@@ -205,10 +267,91 @@ public class LocationOverlayMapViewer extends DownloadLayerViewer implements Loc
 
     }
 
+    public String loadJSONFromAsset(Context context) {
+        String json = null;
+        try {
+            InputStream is = context.getAssets().open("toilets.json");
 
+            int size = is.available();
+
+            byte[] buffer = new byte[size];
+
+            is.read(buffer);
+
+            is.close();
+
+            json = new String(buffer, "UTF-8");
+
+
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            return null;
+        }
+        return json;
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+
+        try {
+            JSONObject jsonObj = new JSONObject(loadJSONFromAsset(this));
+            JSONArray features = jsonObj.getJSONArray("features");
+
+            for (int i = 0; i < features.length(); i++) {
+                JSONObject c = features.getJSONObject(i);
+                JSONObject geometry = c.getJSONObject("geometry");
+                JSONArray coordinates = geometry.getJSONArray("coordinates");
+
+
+                // Create a new user with a first and last name
+                Location locationn = new Location(LocationManager.GPS_PROVIDER);
+                locationn.setLatitude(coordinates.getDouble(1));
+                locationn.setLongitude(coordinates.getDouble(0));
+                Map<String, Object> loc = new HashMap<>();
+                loc.put("geo", locationn);
+                Long tsLong = System.currentTimeMillis() / 1000;
+                loc.put("time", tsLong);
+                loc.put("userid", "overpassAPI");
+                Log.d("SUCC", "Dsdsds: " + loc.toString());
+
+// Add a new document with a generated ID
+                /*db.collection("toilet-geo")
+                        .add(loc)
+                        .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                            @Override
+                            public void onSuccess(DocumentReference documentReference) {
+                                Log.d("SUCC", "DocumentSnapshot added with ID: " + documentReference.getId());
+                                Toast.makeText(LocationOverlayMapViewer.this, "Point added successufly", Toast.LENGTH_SHORT).show();
+                            }
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Toast.makeText(LocationOverlayMapViewer.this, "Point couln't added", Toast.LENGTH_SHORT).show();
+                                Log.w("ERR", "Error adding document", e);
+                            }
+                        });*/
+
+            }
+
+
+
+
+
+        }catch (final JSONException e) {
+            Log.d("hata", "hatalo: " + e.toString() );
+
+        }
+
+
+
+
+
+
 
 
 
@@ -227,7 +370,7 @@ public class LocationOverlayMapViewer extends DownloadLayerViewer implements Loc
         });
 
 
-        Button addButton = (Button) findViewById(R.id.addButton);
+        ImageButton addButton = (ImageButton) findViewById(R.id.addButton);
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -245,7 +388,7 @@ public class LocationOverlayMapViewer extends DownloadLayerViewer implements Loc
 
 
 // Add a new document with a generated ID
-                db.collection("toilet-geo")
+                db.collection("toilet-user")
                         .add(loc)
                         .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                             @Override
