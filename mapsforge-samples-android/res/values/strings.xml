@@ -10,13 +10,7 @@
 
     <string name="cancelbutton">Cancel</string>
     <string name="okbutton">OK</string>
-    <string name="downloadnowbutton">OK</string>
     <string name="rotate_button">Rotate</string>
-    <string name="center_button">Center</string>
-    <string name="add_button">Add</string>
-
-    <string name="zoomin_button">+</string>
-    <string name="zoomout_button">-</string>
 
     <string name="latitude">Latitude</string>
     <string name="longitude">Longitude</string>
@@ -52,47 +46,10 @@
     <string name="preferences_rendering_threads">Number of threads to render concurrently</string>
     <string name="preferences_rendering_threads_desc">Minimum 1</string>
 
-    <string name="preferences_r4_emergency">Emergency</string>
-    <string name="preferences_r4_emergency_desc">Show hospitals, doctors, police etc</string>
-    <string name="preferences_r4_accommodation">Accommodation</string>
-    <string name="preferences_r4_accommodation_desc">Show hostels, guesthouses, campsites etc</string>
-    <string name="preferences_r4_tourism_poi">Tourism</string>
-    <string name="preferences_r4_tourism_poi_desc">Show points of interest</string>
-    <string name="preferences_r4_shopping">Shopping</string>
-    <string name="preferences_r4_shopping_desc">Show shops</string>
-    <string name="preferences_r4_amenities">Amenities</string>
-    <string name="preferences_r4_amenities_desc">Show amenities???</string>
-    <string name="preferences_r4_public_transport">Transport</string>
-    <string name="preferences_r4_public_transport_desc">Show transport</string>
-    <string name="preferences_r4_food">Food</string>
-    <string name="preferences_r4_food_desc">Show restaurants</string>
-    <string name="preferences_r4_traffic">Traffic</string>
-    <string name="preferences_r4_traffic_desc">Show traffic/transport??</string>
-    <string name="preferences_r4_barriers">Barriers</string>
-    <string name="preferences_r4_barriers_desc">Show barriers</string>
-    <string name="preferences_r4_sports">Sports</string>
-    <string name="preferences_r4_sports_desc">Show sports facilities</string>
-    <string name="preferences_r4_places">Places</string>
-    <string name="preferences_r4_places_desc">Show place names</string>
-    <string name="preferences_r4_buildings">Buildings</string>
-    <string name="preferences_r4_buildings_desc">Show buildings</string>
-    <string name="preferences_r4_nature">Nature</string>
-    <string name="preferences_r4_nature_desc">Show natural items</string>
-    <string name="preferences_r4_areas">Areas</string>
-    <string name="preferences_r4_areas_desc">Show areas</string>
-    <string name="preferences_r4_roads">Roads</string>
-    <string name="preferences_r4_roads_desc">Show roads</string>
-    <string name="preferences_r4_waterbodies">Water</string>
-    <string name="preferences_r4_waterbodies_desc">Show lakes, rivers etc</string>
-
     <string name="dialog_location_title">Coordinates</string>
     <string name="dialog_reverse_geocoding_title">Reverse Geocoding</string>
 
     <string name="startup_dontshowagain">Don\'t show again</string>
     <string name="startup_message">To run this samples app, you need any map with filename berlin.map installed on storage.\n\nadb push file.map /sdcard/Android/data/org.mapsforge.samples.android/files/berlin.map</string>
-    <string name="startup_message_tilestore">To run this sample activity, you need a TMS tile store at /sdcard/Android/data/org.mapsforge.samples.android/files/tilestore. Sample data in the app data directory.</string>
-    <string name="startup_message_multimap">To run this sample activity, you need to download a low-resolution world map first.</string>
-    <string name="startup_message_twomaps">To run this sample activity, you need also a map with filename second.map installed on storage.</string>
-    <string name="startup_message_poi">To run this sample activity, you need any poi with filename berlin.poi installed on storage.\n\nadb push file.poi /sdcard/Android/data/org.mapsforge.samples.android/files/berlin.poi</string>
 
 </resources>
