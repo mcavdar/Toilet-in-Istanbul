@@ -19,7 +19,7 @@
         android:label="Toilets in Istanbul"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".Samples"
+            android:name=".LocationOverlayMapViewer"
             android:configChanges="keyboardHidden|orientation|screenSize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -93,7 +93,7 @@
             android:name=".LabelLayerUsingMapDataStoreMapViewer"
             android:configChanges="keyboardHidden|orientation|screenSize" />
         <activity
-            android:name=".LocationOverlayMapViewer"
+            android:name=".Samples"
             android:configChanges="keyboardHidden|orientation|screenSize" />
         <activity
             android:name=".LongPressAction"

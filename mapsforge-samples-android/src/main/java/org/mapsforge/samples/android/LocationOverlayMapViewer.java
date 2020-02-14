@@ -117,6 +117,7 @@ public class LocationOverlayMapViewer extends DownloadLayerViewer implements Loc
     protected LatLong latLong3 = new LatLong(41.0246006, 29.016278);
 
     private List<LatLong> liste = null;
+    private List<LatLong> liste2 = null;
 
 
 
@@ -180,6 +181,7 @@ public class LocationOverlayMapViewer extends DownloadLayerViewer implements Loc
         final FirebaseFirestore db = FirebaseFirestore.getInstance();
 
         liste = new ArrayList<LatLong>();
+        liste2 = new ArrayList<LatLong>();
 
         db.collection("toilet-geo")
                 .get()
@@ -189,6 +191,8 @@ public class LocationOverlayMapViewer extends DownloadLayerViewer implements Loc
 
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
+                                liste = new ArrayList<LatLong>();
+
                                 Log.d("locationoverlay", document.getId() + " => " + document.getData());
 
                                 //addItem(new DummyContent.DummyItem(Integer.toString(a),document.get("userid").toString()+Integer.toString(a), new LatLong(Double.parseDouble(document.get("geo.latitude").toString()), Double.parseDouble(document.get("geo.longitude").toString())), "This is the famous Brandenburger Tor"));
@@ -216,6 +220,8 @@ public class LocationOverlayMapViewer extends DownloadLayerViewer implements Loc
 
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
+                                liste = new ArrayList<LatLong>();
+
                                 Log.d("locationoverlay", document.getId() + " => " + document.getData());
 
                                 //addItem(new DummyContent.DummyItem(Integer.toString(a),document.get("userid").toString()+Integer.toString(a), new LatLong(Double.parseDouble(document.get("geo.latitude").toString()), Double.parseDouble(document.get("geo.longitude").toString())), "This is the famous Brandenburger Tor"));
@@ -223,8 +229,37 @@ public class LocationOverlayMapViewer extends DownloadLayerViewer implements Loc
                                 liste.add(aaa);
                                 Log.d("locationoverlaysss", document.get("geo.latitude").toString() + document.get("geo.longitude").toString());
                                 //  Toast.makeText(this.mapView, "document gets success", Toast.LENGTH_SHORT).show();
-
                                 ccc();
+
+
+                            }
+                        } else {
+                            Log.d("ccc4555566666", "Error getting documents: ", task.getException());
+                            //Toast.makeText(this.mapView, "document gets error", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+
+
+        db.collection("mosques")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                liste2 = new ArrayList<LatLong>();
+
+                                Log.d("locationoverlay", document.getId() + " => " + document.getData());
+
+                                //addItem(new DummyContent.DummyItem(Integer.toString(a),document.get("userid").toString()+Integer.toString(a), new LatLong(Double.parseDouble(document.get("geo.latitude").toString()), Double.parseDouble(document.get("geo.longitude").toString())), "This is the famous Brandenburger Tor"));
+                                LatLong aaa = new LatLong(Double.parseDouble(document.get("geo.latitude").toString()), Double.parseDouble(document.get("geo.longitude").toString()));
+                                liste2.add(aaa);
+                                Log.d("locationoverlaysss", document.get("geo.latitude").toString() + document.get("geo.longitude").toString());
+                                //  Toast.makeText(this.mapView, "document gets success", Toast.LENGTH_SHORT).show();
+
+                                ccc2();
 
                             }
                         } else {
@@ -267,10 +302,25 @@ public class LocationOverlayMapViewer extends DownloadLayerViewer implements Loc
 
     }
 
+
+    private void ccc2(){
+        Log.d("ssss", Integer.toString(liste2.size()));
+
+        Marker marker1;
+        for (int counter = 0; counter < liste2.size(); counter++) {
+            Log.d("ssss", "Error getting documents: ");
+
+            marker1 = Utils.createTappableMarker(this,
+                    R.drawable.marker_mosque, liste2.get(counter));
+            this.mapView.getLayerManager().getLayers().add(marker1);
+        }
+
+    }
+
     public String loadJSONFromAsset(Context context) {
         String json = null;
         try {
-            InputStream is = context.getAssets().open("toilets.json");
+            InputStream is = context.getAssets().open("mosques.json");
 
             int size = is.available();
 
@@ -293,7 +343,7 @@ public class LocationOverlayMapViewer extends DownloadLayerViewer implements Loc
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
+        /*
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
 
@@ -319,7 +369,7 @@ public class LocationOverlayMapViewer extends DownloadLayerViewer implements Loc
                 Log.d("SUCC", "Dsdsds: " + loc.toString());
 
 // Add a new document with a generated ID
-                /*db.collection("toilet-geo")
+                db.collection("mosque")
                         .add(loc)
                         .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                             @Override
@@ -334,7 +384,7 @@ public class LocationOverlayMapViewer extends DownloadLayerViewer implements Loc
                                 Toast.makeText(LocationOverlayMapViewer.this, "Point couln't added", Toast.LENGTH_SHORT).show();
                                 Log.w("ERR", "Error adding document", e);
                             }
-                        });*/
+                        });
 
             }
 
@@ -345,7 +395,7 @@ public class LocationOverlayMapViewer extends DownloadLayerViewer implements Loc
         }catch (final JSONException e) {
             Log.d("hata", "hatalo: " + e.toString() );
 
-        }
+        }*/
 
 
 
