@@ -414,8 +414,13 @@ public class LocationOverlayMapViewer extends DownloadLayerViewer implements Loc
         centerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                l.mapView.setCenter(new LatLong(old_location.getLatitude(), old_location.getLongitude()));
-                l.mapView.setZoomLevel((byte) 17);
+                try {
+                    l.mapView.setCenter(new LatLong(old_location.getLatitude(), old_location.getLongitude()));
+                    l.mapView.setZoomLevel((byte) 17);
+                }
+                catch (NullPointerException n){
+                    Toast.makeText(LocationOverlayMapViewer.this, "Wait until current location defined", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
