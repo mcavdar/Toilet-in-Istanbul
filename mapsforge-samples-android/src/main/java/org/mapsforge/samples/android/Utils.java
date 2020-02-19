@@ -96,9 +96,10 @@ public final class Utils {
                     //      R.drawable.marker_red, geoPoint);
                     //Bitmap bitmap = new AndroidBitmap(BitmapFactory.decodeResource(c.getResources(), resourceIdentifier));
 
-                    Toast.makeText(c,
-                            "getresource " + c.getResources().toString() +"resource int " + resourceIdentifier +"The Marker was tapped " + geoPoint.toString() ,
-                            Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(c,
+                    //        "getresource " + c.getResources().toString() +"resource int " + resourceIdentifier +"The Marker was tapped " + geoPoint.toString() ,
+                    //        Toast.LENGTH_SHORT).show();
+
                     return true;
                 }
                 return false;
